@@ -1,0 +1,108 @@
+<!--
+ * @Author: hhhhhq
+ * @Date: 2020-03-09 11:29:33
+ * @LastEditTime: 2020-03-10 21:35:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/dom_1.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dom</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .clearfix::before,
+      .clearfix::after {
+        content: "";
+        display: table;
+        visibility: hidden;
+        height: 0;
+        line-height: 0;
+      }
+      .clearfix::after {
+        clear: both;
+      }
+      .ul-wrapper {
+        width: 100%;
+      }
+      ul {
+        padding: 0;
+        display: table;
+        margin:0 auto;
+        text-align: center;
+        /* display: flex;
+        justify-content: space-around; */
+      }
+      ul li {
+        list-style: none;
+        float: left;
+        margin-left: 20px;
+      }
+      li:first-child {
+        margin-left: 0;
+      }
+      .detailImg {
+        margin-top: 10px;
+        padding-left: 50px;
+      }
+      p {
+        padding-left: 20%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>美女相册</h1>
+    <div class="ul-wrapper">
+      <ul class="clearfix">
+        <li>
+          <a href="./images/1.jpg" title="美女A"
+            ><img src="./images/1-small.jpg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href="./images/2.jpg" title="美女B"
+            ><img src="./images/2-small.jpg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href="./images/3.jpg" title="美女C"
+            ><img src="./images/3-small.jpg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href="./images/4.jpg" title="美女D"
+            ><img src="./images/4-small.jpg" alt=""
+          /></a>
+        </li>
+      </ul>
+    </div>
+    <img
+      class="detailImg"
+      src="./images/placeholder.png"
+      alt="picture"
+      width="400"
+    />
+    <p></p>
+    <script>
+      "use strict";
+      let lis = document.querySelectorAll("li");
+      let img = document.querySelector(".detailImg");
+      let as = document.querySelectorAll("a");
+      let p = document.querySelector("p");
+      for (let i = 0; i < as.length; i++) {
+        as[i].addEventListener("click", function(e) {
+          img.src = as[i].href;
+          p.innerText = as[i].title;
+          e.preventDefault();
+        });
+      }
+    </script>
+  </body>
+</html>

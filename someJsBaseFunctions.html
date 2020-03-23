@@ -1,0 +1,119 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-08 07:19:49
+ * @LastEditTime: 2020-03-09 17:24:07
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/someFunctions.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.冒泡排序
+      // let arr = [7,6,5,4,3,2,1]
+      // function mysort(arr) {
+      //   // 从小到大排列
+      //   for (var i = 0; i < arr.length - 1; i++) {
+      //     for (var j = 0; j < arr.length - 1 - i; j++) {
+      //       if(arr[j] > arr[j+1]) {
+      //         var temp = arr[j]
+      //         arr[j] = arr[j+1]
+      //         arr[j+1] = temp
+      //       }
+      //     }
+      //   }
+      //   return arr
+      // }
+      // let res = mysort(arr)
+      // console.log(res);
+      // 2.数组去重（双数组、双循环版）
+      // let arr = [1,1,2,3,4,4,4,5,5,6]
+      // function uniq(arr) {
+      //   let newArr = []
+      //   for (let i = 0; i < arr.length; i++) {
+      //     let flag = 0
+      //     for (let j = 0; j < newArr.length; j++) {
+      //       if(newArr[j] === arr[i]) {
+      //         flag = 1
+      //         break;
+      //       }
+      //     }
+      //     if(!flag) {
+      //         newArr.push(arr[i])
+      //     }
+      //   }
+      //   return newArr
+      // }
+      // let res = uniq(arr)
+      // console.log(res);
+      // 3.数组去重（双数组、内层封装函数版）
+      // function contain(arr, val) {
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if(arr[i] === val) {
+      //       return true
+      //     }
+      //   }
+      //   return false
+      // }
+      // function uniqPlus(arr) {
+      //   let newArr = []
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if(contain(newArr, arr[i])) {
+      //       continue
+      //     } else {
+      //       newArr.push(arr[i])
+      //     }
+      //   }
+      //   return newArr
+      // }
+      // let arr = [1,1,2,3,4,4,4,5,5,6]
+      // let res = uniqPlus(arr)
+      // console.log(res);
+      // 4.数组去重（内层对象、遍历对象key版）
+      // function uniqX(arr) {
+      //   let obj = {}
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if(arr[i] in obj) {
+      //       obj[arr[i]]++
+      //     } else {
+      //       obj[arr[i]] = 1
+      //     }
+      //   }
+      //   let newArr = []
+      //   for (let key in obj) {
+      //     newArr.push(key)
+      //   }
+      //   return newArr
+      // }
+
+      // let arr = ['a','a','c','b', 'e','e', 'e']
+      // let res = uniqX(arr)
+      // console.log(res);
+      /**
+       * @description:
+       * @param {type}
+       * @return:
+       */
+    //   let str = "my_name_is_jim_green";
+    //   function camelStyle(str) {
+    //     str = str.split("_");
+    //     for (let i = 0; i < str.length; i++) {
+    //       if (i === 0) {
+    //         continue;
+    //       } else {
+    //         str[i] = str[i].slice(0, 1).toUpperCase() + str[i].slice(1);
+    //       }
+    //     }
+    //     return str.join("");
+    //   }
+    //  console.log(camelStyle(str));
+    </script>
+  </body>
+</html>

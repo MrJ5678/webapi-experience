@@ -1,0 +1,84 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-12 11:50:58
+ * @LastEditTime: 2020-03-13 08:24:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/changeSkin.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .menu {
+        /* width: 40%; */
+        margin: 100px auto;
+        display: table;
+        text-align: center;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      ul li {
+        float: left;
+        /* width: 16.6%; */
+        /* background-color: pink; */
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 10px;
+        
+      }
+      a {
+        float: left;
+        width: 100px;
+        background-color: hotpink;
+        text-decoration: none;
+        color: #666666;
+        border-radius: 10px;
+      }
+      .current {
+        background-color: orange;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="menu">
+      <ul>
+        <li><a href="javascript:void(0)">首页</a></li>
+        <li><a href="javascript:void(0)">博客</a></li>
+        <li><a href="javascript:void(0)">播客</a></li>
+        <li><a href="javascript:void(0)">相册</a></li>
+        <li><a href="javascript:void(0)">关于</a></li>
+        <li><a href="javascript:void(0)">帮助</a></li>
+      </ul>
+    </div>
+    <script>
+      let as = document.querySelectorAll('a')
+      
+      for (let i = 0; i < as.length; i++) {
+        let index
+        as[i].addEventListener('mouseover', function() {
+          // 将所有的类名清空
+          
+          this.classList.add('current')
+        })
+        as[i].addEventListener('mouseout', function() {
+          this.className = ''
+        }) 
+
+      }           
+    </script>
+  </body>
+</html>

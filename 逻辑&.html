@@ -1,0 +1,63 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-16 16:00:11
+ * @LastEditTime: 2020-03-17 17:17:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /images/Users/apple/Desktop/webapi03code/逻辑&.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>缓动框架</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      position: absolute;
+      top: 40px;
+      width: 200px;
+      height: 200px;
+      background-color: #f99;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <button>去 top 100</button>
+  <button>去100</button>
+  <div></div>
+  <script>
+    let btns = document.querySelectorAll('button')
+    let box = document.querySelector('div')
+
+    btns[0].addEventListener('click', function() {
+      animate(box, 'top', 200)
+    })
+    btns[1].addEventListener('click', function() {
+       animate(box, 100)
+    })
+
+    function animate(element, attr, target) {
+      clearInterval(element.timerId)
+      element.timerId = setInterval(() => {
+        // let current = element.offsetLeft
+        let current = parseInt(window.getComputedStyle(element, null)[attr])
+        let step = (target - current) / 10
+        step = step > 0 ? Math.ceil(step) : Math.floor(step)
+        // console.log(step);
+        
+        current += step
+        element.style[attr] = current + 'px'
+        if(current == target) {
+          clearInterval(element.timerId)
+        }
+      }, 30);
+    }
+  </script>
+</body>
+</html>

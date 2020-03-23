@@ -1,0 +1,42 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-18 10:45:18
+ * @LastEditTime: 2020-03-18 12:23:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/client家族.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 3000px;
+      }
+      
+    </style>
+  </head>
+  <body>
+
+    <script>
+      document.addEventListener('click', function(e) {
+        e = e || window.event
+        console.log(e);
+        // clientX clientY 
+        // pageX pageY
+        // screenX screenY
+        console.log(e.clientX, e.pageX, e.screenX);
+        console.log(e.clientY, e.pageY, e.screenY);
+      })
+      document.addEventListener('keyup', function(e) {
+        console.log(e);
+        
+      })
+    </script>
+  </body>
+</html>

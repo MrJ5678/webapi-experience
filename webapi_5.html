@@ -1,0 +1,45 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-14 10:04:32
+ * @LastEditTime: 2020-03-15 10:35:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/webapi_5.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>offset</title>
+    <style>
+      
+      div {
+        position: absolute;
+        top: 40px;
+        width: 100px;
+        height: 100px;
+        background-color: #f99;
+      }
+    </style>
+  </head>
+  <body>
+    <button>移动400px</button>
+    <button>移动800px</button>
+    <div></div>
+    <script src="./animate.js"></script>
+    <script>
+      let btn1 = document.querySelectorAll("button")[0];
+      let btn2 = document.querySelectorAll("button")[1];
+      let div = document.querySelector("div");
+
+      btn1.addEventListener("click", function() {
+        animate(div, 400)
+      });
+
+      btn2.addEventListener('click', function() {
+        animate(div, 800)
+      })
+    </script>
+  </body>
+</html>

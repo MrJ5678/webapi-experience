@@ -1,0 +1,152 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-13 10:44:03
+ * @LastEditTime: 2020-03-13 17:19:21
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/appendChild.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xinyuan</title>
+    <style>
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        /* overflow: hidden; */
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: url(./images/bg.gif);
+      }
+      .content {
+        position: relative;
+        width: 70%;
+        height: 80%;
+        margin: 0 auto;
+        background: url(./images/content_bg.jpg) no-repeat;
+      }
+      .tip1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 227px;
+      }
+      .tip1 .tip_h {
+        position: relative;
+        width: 227px;
+        height: 68px;
+        font-size: 12px;
+        background: url(./images/tip1_h.gif);
+        cursor: move;
+      }
+      .tip1 .tip_h span {
+        position: absolute;
+        top: 55px;
+        left: 5px;
+        color: #1b1818;
+        cursor: default;
+      }
+      .tip1 .tip_c {
+        width: 227px;
+        height: 50px;
+        padding: 10px;
+        font-size: 14px;
+        box-sizing: border-box;
+        color: #1b1818;
+        background: url(./images/tip1_c.gif);
+      }
+      .tip1 .tip_f {
+        position: relative;
+        width: 227px;
+        height: 73px;
+        background: url(./images/tip1_f.gif);
+      }
+      .tip1 .tip_f .flower {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        top: 24px;
+        left: 15px;
+        background: url(./images/bpic_1.gif);
+      }
+      .tip1 .tip_f span {
+        position: absolute;
+        top: 28px;
+        right: 25px;
+        color: hotpink;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="tip1">
+        <div class="tip_h" title="双击删除纸条">
+          <span>第[49568]条 2020-03-13 22:22:22 x</span>
+        </div>
+        <div class="tip_c">每天都要自己率性，希望以后越来越帅！</div>
+        <div class="tip_f">
+          <div class="flower"></div>
+          <span>成真的人</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let tip1 = document.querySelector(".tip1");
+      let arr = [];
+      for (let i = 0; i < 10; i++) {
+        arr.push(tip1.cloneNode(true));
+      }
+      // console.log(arr);
+      // 克隆10个tip1
+      // 把每一个tip1的位置进行随机
+      // 点击关闭纸条
+      // 双击关闭纸条
+      // 点谁谁上来
+      for (let i = 0; i < arr.length - 1; i++) {
+        document.querySelector(".content").appendChild(arr[i]);
+      }
+      // console.dir((document.querySelector(".content")).children);
+      // 找10个tip
+      // left随机的范围：content宽度减去一个tip1的宽度
+      // top随机的范围： content高度减去一个tip1的高度
+      let tip1s = (document.querySelector(".content")).children
+      for (let i = 0; i < tip1s.length; i++) {
+        let randomLeft = parseInt(Math.random() * 720)
+        let randomTop = parseInt(Math.random() * 400)
+        tip1s[i].style.left = `${randomLeft}px`        
+        tip1s[i].style.top = `${randomTop}px` 
+      }
+
+      // 点击关闭纸条
+      let closes = document.querySelectorAll('.tip_h span')
+      for (let i = 0; i < closes.length; i++) {
+        closes[i].addEventListener('click', function() {
+          document.querySelector('.content').removeChild(this.parentNode.parentNode) 
+        })  
+      }
+
+      // 双击关闭纸条
+      for (let i = 0; i < tip1s.length; i++) {
+        tip1s[i].firstElementChild.addEventListener('dblclick', function() {
+          document.querySelector('.content').removeChild(this.parentNode)
+        })        
+      }
+
+      // 点谁谁上来
+      for (let i = 0; i < tip1s.length; i++) {
+        let index = 1
+        tip1s[i].addEventListener('click', function() {
+          this.style.zIndex = ++index
+        })        
+      }
+    </script>
+  </body>
+</html>

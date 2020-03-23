@@ -1,0 +1,236 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-15 10:37:56
+ * @LastEditTime: 2020-03-16 06:47:50
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/carouse.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      list-style: none;
+    }
+    ol {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+      color: #666;
+    }
+   
+    .box {
+      position: relative;
+      width: 790px;
+      height: 340px;
+      /* border: 1px solid #000; */
+      margin: 100px auto;
+      overflow: hidden;
+    }
+    .box ul {
+      position: absolute;
+      width: 900%;
+      height: 100%;
+    }
+    .box ul li {
+      float: left;
+    }
+    .box ol {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      bottom: 20px;
+      /* background-color: rgba(255, 255, 255, .5); */
+    }
+    .box ol li {
+      width: 12px;
+      height: 12px;
+      background-color: #fff;
+      border-radius: 50%;
+      float: left;
+      margin: 5px;
+      cursor: pointer;
+    }
+    .box ol li.current {
+      background-color:red;
+    }
+    /* 左右箭头 */
+    .box .arrow {
+      display: none;
+    }
+    .box:hover .arrow {
+      display: block;
+    }
+    .box .arrow span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      color: #fff;
+      font-size: 22px;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      background-color: rgba(0, 0, 0, .5);
+      cursor: pointer;
+    }
+    .box .arrow span .prev {
+      left: 0;
+    }
+    .box .arrow span.next {
+      right: 0;
+    }
+    
+    /* .box .arrow {
+      display: none;
+    }
+    .box:hover .arrow {
+      display: block;
+    }
+    .box .arrow::before,
+    .box .arrow::after {
+      content: '<';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      width: 30px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-size: 20px;
+      color: #fff;
+      font-family:'Courier New', Courier, monospace;
+      background-color: rgba(0, 0, 0, .5);
+    }
+    .box .arrow::after {
+      content: '>';
+      left: auto;
+      right: 0;
+    } */
+  </style>
+</head>
+<body>
+  <div class="box">
+    <ul>
+      <li><a href="#"><img src="./images/1.jpg" alt="pic"></a></li>
+      <li><a href="#"><img src="./images/2.jpg" alt="pic"></a></li>
+      <li><a href="#"><img src="./images/3.jpg" alt="pic"></a></li>
+      <li><a href="#"><img src="./images/4.jpg" alt="pic"></a></li>
+      <li><a href="#"><img src="./images/5.jpg" alt="pic"></a></li>
+      <li><a href="#"><img src="./images/6.jpg" alt="pic"></a></li>
+      <li><a href="#"><img src="./images/7.jpg" alt="pic"></a></li>
+      <li><a href="#"><img src="./images/8.jpg" alt="pic"></a></li>
+    </ul>
+    <!-- 小圆点 -->
+    <ol>
+      
+    </ol>
+    <!-- 左右箭头 -->
+    <div class="arrow">
+      <span class="prev">&lt</span>
+      <span class="next">&gt</span>
+    </div>
+  </div>
+
+  <script src="./webapi03code/animate.js"></script>
+  <script>
+    // 1.点击小圆点 
+    //   小圆点排他
+    //   移动ul
+    let box = document.querySelector('.box')
+    // let circles = document.querySelector('ol').children
+    let ul = document.querySelector('ul')
+
+    for (let i = 0; i < circles.length; i++) {
+      // circles[i].index = i
+      circles[i].addEventListener('click', function() {
+        for (let i = 0; i < circles.length; i++) {
+          circles[i].classList.remove('current')          
+        }
+        this.classList.add('current')
+
+        // ul.style.left = `${- i * box.offsetWidth}px`
+        animate(ul, - i * box.offsetWidth, 40)
+      }) 
+    } 
+
+    let index = 0//展示图片的默认下标
+    // 右箭头点击事件
+    // 找到右箭头
+    // 给右箭头注册点击事件
+    // index++
+    // 移动ul， ul的left = - index * box的宽度
+    
+    let nxt = document.querySelector('.arrow .next')
+    let prev = document.querySelector('.arrow .prev')
+    
+    nxt.addEventListener('click', function() {
+      if(index >= ul.children.length - 1) {
+        index = 0
+        ul.style.left = 0
+      }
+      index++
+      animate(ul, -index * box.offsetWidth, 40)
+      // 同步小圆点
+      for (let i = 0; i < circles.length; i++) {
+        circles[i].classList.remove('current')       
+      }
+      // 找到对应下标的小圆点，增加current类
+      if(index >= 8) {
+        circles[0].classList.add('current')
+      }else {
+        circles[index].classList.add('current')
+      }
+    })   
+
+    prev.addEventListener('click', function() {
+      if(index <= 0) {
+        index = ul.children.length - 1
+        ul.style.left = `${-index * box.offsetWidth}px`
+      }
+      index--
+      animate(ul, -index * box.offsetWidth, 40)
+
+      // 同步小圆点
+      for (let i = 0; i < circles.length; i++) {
+        circles[i].classList.remove('current')       
+      }
+      // 找到对应下标的小圆点，增加current类
+      circles[index].classList.add('current')
+    }) 
+
+    // *******************************************
+    // 1.js动态添加小圆点
+    // 2.js动态添加最后一张假图片
+    // 3.实现左右焦点图
+    // 4.自动播放
+    // 5.点击小圆点同步切换
+    // 6.解决点击小圆点的bug（展示最后一张假图片时，点击小圆点）
+/* 情况 */
+    // 去掉了假图片
+    // 小圆点的li都删除了
+/* 目标 */
+    // 通过js将假图片和li节点都添加到dom中
+/* 功能1 js添加小圆点*/    
+    // 根据图片数量去创建小圆点
+    // 图片数量 => ul.length
+    let ol = document.querySelector('ol')
+    for (let i = 0; i < ul.length; i++) {
+      let li = document.createElement('li')
+      ol.appendChild(li)
+    }
+    console.log(ol);
+  </script>
+</body>
+</html>

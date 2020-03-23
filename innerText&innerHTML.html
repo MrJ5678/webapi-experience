@@ -1,0 +1,39 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-12 10:27:56
+ * @LastEditTime: 2020-03-12 11:44:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/innerText&innerHTML.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>innerHTML&innerText</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      transition: background-color 1.5s;
+    }
+  </style>
+</head>
+<body>
+  <button>关灯</button>
+  <script>
+    let btn = document.querySelector('button')
+    let body = document.body
+    btn.addEventListener('click', function() {
+      if(btn.innerText === '关灯') {
+        this.innerText = '开灯'
+        body.style.backgroundColor = 'rgb(23, 22, 22)'
+      } else {
+        this.innerText = '关灯'
+        body.style.backgroundColor = '#fff'
+      }  
+    })
+  </script>
+</body>
+</html>

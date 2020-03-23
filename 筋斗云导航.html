@@ -1,0 +1,115 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-17 11:06:51
+ * @LastEditTime: 2020-03-17 16:35:59
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/webapi03code/筋斗云导航.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>筋斗云导航</title>
+  <style>
+    body, html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #666;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    
+    .nav {
+      position: relative;
+      width: 800px;
+      height: 42px;
+      margin: 100px auto;
+      background: url(../images/rss.png) no-repeat right center;
+      background-color: #fff;
+      border-radius: 10px;
+    }
+    .nav .navBar {
+      position: relative;
+    }
+    .nav li {
+      float: left;
+      width: 83px;
+      height: 42px;
+      line-height: 42px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .nav .cloud {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 83px;
+      height: 42px;
+      background: url(../images/cloud.gif);
+    }
+  </style>
+</head>
+<body>
+  <script src="./缓动函数.js"></script>
+  <div class="nav">
+    <span class="cloud"></span>
+    <ul class="navBar">
+      <li>北京校区</li>
+      <li>上海校区</li>
+      <li>广州校区</li>
+      <li>深圳校区</li>
+      <li>武汉校区</li>
+      <li>关于我们</li>
+      <li>联系我们</li>
+      <li>招贤纳士</li>
+    </ul>
+  </div>
+
+  <script>
+    // 实现功能：
+    // 1.鼠标移入事件 云朵跟随
+    // 2.鼠标离开 回到原来位置
+    // 3.鼠标点击 修改云朵回去的位置
+
+    // 功能1:鼠标移入事件 云朵跟随 
+    // 实现思路
+    // 1.获取所有的导航li
+    // 2.给li注册鼠标移入事件
+    // 3.需要让span移动，移动的值就是当前li到左边的距离
+    let lis = document.querySelectorAll('.nav li')
+    let cloud = document.querySelector('.cloud')
+    let position = 0
+
+    for (let i = 0; i < lis.length; i++) {
+      // 给li注册鼠标移入事件
+      lis[i].addEventListener('mouseover', function() {
+        animate(cloud, this.offsetLeft)
+      })
+      // 功能2:鼠标离开 回到原来位置
+      // 实现思路
+      // 1.给li注册mouseout
+      // 2.让span移动到0的位置
+      // 给li注册mouseout
+      lis[i].addEventListener('mouseout', function() {
+        animate(cloud, position)
+      })
+      lis[i].addEventListener('click', function() {
+        position = lis[i].offsetLeft
+        animate(cloud, this.offsetLeft)
+      })
+    }
+    // 功能3:鼠标点击 修改云朵回去的位置
+    // 实现思路
+    // 1.给li注册click
+    // 2.改变position为当前li的offsetLeft
+    
+  </script>
+</body>
+</html>

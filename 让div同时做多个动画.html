@@ -1,0 +1,84 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-16 16:00:11
+ * @LastEditTime: 2020-03-17 20:12:11
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /images/Users/apple/Desktop/webapi03code/逻辑&.html
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>缓动框架</title>
+   <style>
+     * {
+       margin: 0;
+       padding: 0;
+     }
+     div {
+       position: absolute;
+       top: 40px;
+       width: 200px;
+       height: 200px;
+       background-color: #f99;
+       border-radius: 10px;
+     }
+   </style>
+ </head>
+ <body>
+   <button>去 宽高 400</button>
+   <button>去 宽高 200</button>
+   <div></div>
+   <script>
+     let btns = document.querySelectorAll('button')
+     let box = document.querySelector('div')
+ 
+     btns[0].addEventListener('click', function() {
+      //  animate(box, 'height', 400)
+      //  animate(box, 'width', 400)
+       animate(box, {
+        'height': 300,
+        'width': 600,
+       })
+     })
+     btns[1].addEventListener('click', function() {
+      animate(box, {
+        'height': 300,
+        'width': 600
+       })
+     })
+    //  option是elemtnt的配置参数对象
+
+    // 所有的样式都到达目标值时，再清除定时器
+    // 假设成立法：
+    // 1.假设所有的样式都以达到目标值
+    // 2.对每个样式进行检查
+     function animate(element, options) {
+       clearInterval(element.timerId)
+       element.timerId = setInterval(() => {
+        let flag = 1 // 假设所有的样式都以达到目标值
+        //  遍历对象，看有几个key
+        for (const key in options) {
+           let attr = key
+           let target =  options[key]
+           let current = parseInt(window.getComputedStyle(element, null)[attr])
+           let step = (target - current) / 10
+           step = step > 0 ? Math.ceil(step) : Math.floor(step)
+           // console.log(step);
+           current += step
+           element.style[attr] = current + 'px'
+           if(current != target) {
+             flag = 0
+           }
+        }
+        // console.log(flag);
+        if(flag) {
+          clearInterval(element.timerId)
+        }
+       }, 30);
+     }
+   </script>
+ </body>
+ </html>

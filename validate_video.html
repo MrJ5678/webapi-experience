@@ -1,0 +1,64 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-13 10:26:58
+ * @LastEditTime: 2020-03-13 10:30:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/validate_video.html
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>validate</title>
+ </head>
+ <body>
+   用户名：<input type="text" placeholder="请输入用户名"><span class="utext"></span><br>
+   密码：<input type="password" placeholder="请输入密码" name="pwd" id="pwd"><span class="ptext"></span>
+ 
+   <script>
+     let username = document.querySelector('[type=text]')
+     let password = document.querySelector('[type=password]')
+     let utext = document.querySelector('.utext')
+     let ptext = document.querySelector('.ptext')
+ 
+     username.addEventListener('keydown', function() {
+       console.log('弹起');
+       
+       if(this.value === '') {
+         this.placeholder = '请输入用户名'
+       }
+       if(this.value.trim() && this.value.length > 2 && this.value.length < 7) {
+         utext.innerText = '正确'
+         utext.style.color = 'green'
+       }else {
+         utext.innerText = '字符长度应在3～6个字符之间'
+         utext.style.color = 'red'
+       }
+     })
+     username.addEventListener('keyup', function() {
+       this.placeholder = ''
+       utext.innerText = ''
+     })
+ 
+ 
+     password.addEventListener('blur', function() {
+       if(this.value === '') {
+         this.placeholder = '请输入密码'
+       }
+       if(this.value.trim() && this.value.length > 5 && this.value.length < 9) {
+         ptext.innerText = '正确'
+         ptext.style.color = 'green'
+       }else {
+         ptext.innerText = '字符长度应在6～8个字符之间'
+         ptext.style.color = 'red'
+       }
+     })
+     password.addEventListener('focus', function() {
+       this.placeholder = ''
+       ptext.innerText = ''
+     })
+   </script>
+ </body>
+ </html>

@@ -1,0 +1,80 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-13 17:22:32
+ * @LastEditTime: 2020-03-14 09:45:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/creatElement.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        border: 1px solid #000;
+        width: 600px;
+        margin: 100px auto;
+        padding: 20px;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      textarea {
+        resize: none;
+        outline: none;
+        width: 450px;
+        height: 160px;
+      }
+      ul {
+        width: 450px;
+        padding-left: 80px;
+      }
+      ul li button {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span>微博发布</span>
+      <textarea class="textarea" cols="30" rows="10"></textarea>
+      <button>发布</button>
+      <ul></ul>
+
+      <script>
+        let textarea = document.querySelector(".textarea");
+        let ul = document.querySelector("ul");
+        let btn = document.querySelector("button");
+
+        btn.addEventListener("click", function() {
+          if (textarea.value && textarea.value.trim()) {
+            let li = document.createElement("li");
+            let del = document.createElement("button");
+            li.innerText = textarea.value;
+            li.appendChild(del);
+            textarea.value = ''
+            del.innerText = "删除";
+            ul.insertBefore(li, ul.children[0]);
+            checkLis()
+          }
+        });
+
+        function checkLis() {
+          if (ul.children) {
+            let lis = ul.children
+            for (let i = 0; i < lis.length; i++) {
+              lis[i].querySelector('button').addEventListener('click', function() {
+                ul.removeChild(this.parentNode)
+              })
+            }
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

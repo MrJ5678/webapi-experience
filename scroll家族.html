@@ -1,0 +1,63 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-18 09:25:05
+ * @LastEditTime: 2020-03-18 10:41:59
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/scroll家族.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   body, html {
+     margin: 0;
+     padding: 0;
+   }
+   img {
+     vertical-align: top;
+   }
+   .main {
+     margin: 0 auto;
+     width: 1000px;
+     margin-top: 10px;
+   }
+   .fixed {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+   }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <img src="./images/top.png" alt="">
+  </div>
+  <div class="navBar">
+    <img src="./images/nav.png" alt="">
+  </div>
+  <div class="main">
+    <img src="./images/main.png" alt="">
+  </div>
+  <script>
+    let navBar = document.querySelector('.navBar')
+    let header = document.querySelector('.top') 
+    let main = document.querySelector('.main')       
+
+    window.addEventListener('scroll', function() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      if(scrollTop >= header.offsetHeight) {
+        navBar.classList.add('fixed')
+        main.style.marginTop = `${10 + navBar.offsetHeight}px`
+      }else {
+        navBar.classList.remove('fixed')
+        main.style.marginTop = `10px`
+      }   
+    })    
+  </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!--
+ * @Author: hhhhhq
+ * @Date: 2020-03-06 08:18:32
+ * @LastEditTime: 2020-03-09 10:11:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/test.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      /**
+       * @description: array maximum
+       * @param {array}
+       * @return: arrray maximum
+       */
+      arr = [9, 7, 6, 5, 4, 3, 2];
+      function mysort(arr) {
+        for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = 0; j < arr.length - 1 - j; j++) {
+            if (arr[j] > arr[j + 1]) {
+              let temp;
+              temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+            }
+          }
+        }
+        return arr;
+      }
+      // let res1 = mysort(arr)
+      // console.log(res1);
+
+      /**
+       * @description: myreverse
+       * @param {array}
+       * @return: a resevered array
+       */
+      function myreverse(arr) {
+        let anotherArr = [];
+        for (let i = arr.length - 1; i >= 0; i--) {
+          anotherArr.push(arr[i]);
+        }
+        return anotherArr;
+      }
+      //  let reverse =  myreverse(arr)
+      //  console.log(reverse);
+      // console.log(mysort(arr));
+      /**
+       * @description: 数组去重
+       * @param {数组}
+       * @return: 去重后的数组
+       */
+      function cut(arr) {
+        let anotherArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          var flag = 0; //假设接受数组中没有待去重数组的元素
+          for (let j = 0; j < anotherArr.length; j++) {
+            if (anotherArr[j] === arr[i]) {
+              flag = 1;
+              break; //停止遍历接收数组，准备遍历待去重数组的下一个元素
+            }
+          }
+          if (!flag) {
+            anotherArr.push(arr[i]);
+          }
+          /* if(flag) {
+            continue
+          }
+          anotherArr.push(arr[i]) */
+        }
+        return anotherArr;
+      }
+      a = [111, 222, 333, 444, 555, 111];
+      // console.log(cut(a));
+      //判断数组中是否包含某一个元素
+      function contain(arr, val) {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] === val) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function uniq(arr) {
+        let anotherArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          if (contain(anotherArr, arr[i])) {
+            continue;
+          }
+          anotherArr.push(arr[i]);
+        }
+        return anotherArr;
+      }
+
+      // console.log(uniq([1,1,1,1,1,1,1,2,2]));
+      // let num = 11;
+      arr = ["1", "2", "3", "4", "5"];
+      function join(arr) {
+        let str = "";
+        for (let i = 0; i < arr.length; i++) {
+          if (i === arr.length - 1) {
+            str += arr[i];
+          } else {
+            str += arr[i] + "-";
+          }
+        }
+        return str;
+      }
+      // console.log(join(arr));
+      // z = {'a':'b'}
+      // let y = z
+      // z = {'m':'n'}
+      // console.log(y, z);
+
+      m = { a: "b" };
+      let z = m;
+      y = z;
+      m = { m: "n" };
+      console.log(y, z);
+      // let obj = {
+      //   name: "zs",
+      //   age: 18,
+      //   gender: "man",
+      //   height: 180
+      // };
+      // for (const key in obj) {
+      //   if (obj.hasOwnProperty(key)) {
+      //     const element = obj[key];
+      //     console.log(element);
+      //   }
+      // }
+      let anArray = ["a", "b", "c", "a", "b", "c", "x", "z"];
+      function jiSuanShuZuYuanSuChuXianCiShu(arr) {
+        let obj = {};
+        // 遍历数组，判断obj中是否已含有该键名
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] in obj) {
+            obj[arr[i]]++;
+          } else {
+            //不存在
+            obj[arr[i]] = 1;
+          }
+        }
+        return obj;
+      }
+      let res = jiSuanShuZuYuanSuChuXianCiShu(anArray);
+      let jieShouShuZu = [];
+      for (const key in res) {
+        jieShouShuZu.push(key);
+      }
+      console.log(jieShouShuZu);
+      var obj = {
+        name: "zs",
+        age: 18,
+        gender: "man",
+        sayHi() {
+          console.log("111");
+        }
+      };
+      // console.log(obj[name]);
+
+      // console.log(Math.PI);
+      // let anArray1 = ['1','2','3','4',56.5]
+      // console.log(Math.max(...anArray1));
+      // console.log(Math.min(...anArray1));
+      // console.log(Math.pow(2, -3));
+      // console.log(parseInt(Math.random() * 3));
+      // 0 到 255
+      // Math.random() * 256
+      // let a = Math.random() * 256,
+      //     b = Math.random() * 256,
+      //     c = Math.random() * 256
+      // `rgb(${a},${b},${c})`
+
+      // function getColor() {
+      //   let a = b = c = Math.random() * 256
+      //   let body = document.querySelector('body')
+      //   body.style.backgroundColor = `rgb(${a},${b},${c})`
+      // }
+      // window.onload = function() {
+      //   let a = Math.random() * 256,
+      //       b = Math.random() * 256,
+      //       c = Math.random() * 256
+      //   let body = document.querySelector('body')
+      //   body.style.backgroundColor = `rgb(${a},${b},${c})`
+      // }
+      // var date = new Date()
+      // console.log(date);
+      // var date = new Date('2020-12-22 12:00:00')
+      // console.log(date);
+      // var date = new Date('2020-12-22')
+      // console.log(date);
+      // var date = new Date(2020, 11, 22)//此创建方法到月从0开始计数
+      // console.log(date);
+      // var date = new Date()
+      // console.log(date.toLocaleString());
+      // console.log(date.toLocaleDateString());
+      // console.log(date.toLocaleTimeString());
+      // console.log(date.toDateString());
+      // console.log(date.toISOString());
+
+      /* function formatNum(num) {
+        return num < 10 ? "0" + num : num
+      }
+      function getCurrentTime() {
+        var date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth();
+        let day = date.getDate();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        // console.log(date.getFullYear());
+        // console.log(date.getMonth() + 1);
+        // console.log(date.getDay());//拿到的是星期， 0表示星期日
+        // console.log(date.getDate());
+        // console.log(date.getHours());
+        // console.log(date.getMinutes());
+        // console.log(date.getSeconds());
+        // 月 日 时 分 秒 如果是一位数要在前面补‘0’
+        
+        
+        let time = `${year}年${formatNum(month)}月${formatNum(day)}日 ${formatNum(hours)}:${formatNum(minutes)}:${formatNum(seconds)}`;
+        document.querySelector('div').innerText = time
+      }
+
+      var str = 'hahaha'
+      window.onload = function() {
+        setInterval(() => {
+          getCurrentTime()
+        }, 1000);
+      }; */
+      // var start = new Date()
+
+      // var sum = 0
+      // for (let i = 1; i < 100000000; i++) {
+      //   sum += i
+      // }
+      // console.log(sum);
+
+      // var end = new Date()
+      // console.log(end - start);
+      // var now = new Date()
+      // var target = new Date('2020-12-22 00:00:00')
+      // var time = target - now
+      // time = parseInt(time / 1000)  //剩余秒数
+      // // 用剩余的秒数计算剩余天数 小时数 分钟数 秒数
+      // let day = parseInt(time / (3600 * 24))
+      // // 小时
+      // let hour = parseInt(time / 3600) % 24
+      // // 分钟
+      // let minite = parseInt(time / 60) % 60
+      // // 秒钟
+      // let seconds = parseInt(time % 60)
+      // console.log(`还有${day}天${hour}小时${minite}分${seconds}秒过生日`);
+      // -2 到 0 的随机数
+        var num
+        console.log(String(num));
+    </script>
+  </body>
+</html>

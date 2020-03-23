@@ -1,0 +1,38 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-18 12:31:40
+ * @LastEditTime: 2020-03-18 12:51:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/天使.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 3000px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="./images/tianshi.gif" alt="pic" />
+
+    <script>
+      let img = document.querySelector("img");
+      img.addEventListener("click", function() {
+        document.addEventListener("mousemove", function(e) {
+          img.style.position = "fixed";
+          img.style.left = `${e.clientX - img.offsetWidth / 2}px`;
+          img.style.top = `${e.clientY - img.offsetHeight / 2}px`;
+        });
+      });
+      
+    </script>
+  </body>
+</html>

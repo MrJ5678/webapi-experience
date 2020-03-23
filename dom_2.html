@@ -1,0 +1,98 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-11 08:57:17
+ * @LastEditTime: 2020-03-11 21:10:00
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/dom_2.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom_2</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        width: 30%;
+        margin: 100px auto;
+        border: 1px solid #000;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+      ul li {
+        float: left;
+        width: 25%;
+        height: 40px;
+        line-height: 40px;
+        /* border: 1px solid #000; */
+        text-align: center;
+        background-color: pink;
+        box-sizing: border-box;
+        cursor: pointer;
+      }
+      ul li.current {
+        background-color: green;
+      }
+      .info {
+        height: 200px;
+        background-color: #eee;
+        font-size: 40px;
+        line-height: 200px;
+        color: #666666;
+        text-align: center;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <ul>
+        <li class="current" data-index="1">导航1</li>
+        <li data-index="2">导航2</li>
+        <li data-index="3">导航3</li>
+        <li data-index="4">导航4</li>
+      </ul>
+      <div class="info"></div>
+    </div>    
+    <script>
+      let info = document.querySelector('.info')
+      let lis = document.querySelectorAll('li')
+      // 找到当前点击元素 函数
+      function findCurrentEle(lis) {
+        for (let i = 0; i < lis.length; i++) {
+          if(lis[i].classList.contains('current')) {
+            var currentEle = lis[i]
+            return currentEle
+          }        
+        }
+      }
+      let currentEle = findCurrentEle(lis)
+      
+      // 点击导航时
+      for (let i = 0; i < lis.length; i++) {
+        lis[i].addEventListener('click', function() {
+          for (let i = 0; i < lis.length; i++) {
+            if(lis[i].classList.contains('current')) {
+              lis[i].classList.remove('current')
+              break
+            }
+          }
+          this.classList.add('current')
+          let currentEle = findCurrentEle(lis)  
+          info.innerText = `内容${currentEle.dataset.index}`
+        })        
+      }
+      info.innerText = `内容${currentEle.dataset.index}`      
+    </script>
+  </body>
+</html>

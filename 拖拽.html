@@ -1,0 +1,60 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-18 12:54:19
+ * @LastEditTime: 2020-03-18 13:45:35
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/拖拽.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 2000px;
+      }
+      div {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-color: #f99;
+        cursor: move;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+
+    <script>
+      let div = document.querySelector("div");
+      let open = false;
+      let disX = 0
+      let disY = 0
+      div.addEventListener("mousedown", function(e) {
+        open = true;
+        disX = e.pageX - div.offsetLeft
+        disY = e.pageY - div.offsetTop
+        
+      });
+      document.addEventListener("mousemove", function(e) {
+        
+        if (open) {
+          // console.log(disX, disY);
+          
+          div.style.left = `${e.pageX - disX}px`;
+          div.style.top = `${e.pageY - disY}px`;
+        }
+      });
+      document.addEventListener("mouseup", function() {
+        open = false
+      });
+    </script>
+  </body>
+</html>

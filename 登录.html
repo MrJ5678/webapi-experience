@@ -1,0 +1,208 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-18 20:35:42
+ * @LastEditTime: 2020-03-19 11:17:54
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/登录.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    a {
+      text-decoration: none;
+      color: #666;
+    }
+    input {
+      outline: none;
+    }
+    .login-header {
+      height: 50px;
+      line-height: 50px;
+      font-size: 22px;
+      text-align: center;
+    }
+    .login {
+      display: none;
+      position: absolute;
+      width: 512px;
+      height: 280px;
+      padding: 0 20px;
+      border: 1px solid #ebebeb;
+      left: 0;
+      /* right: 0; */
+      background-color: #fff;
+      box-shadow: 0 0 20px #ddd;
+      box-sizing: border-box;
+      z-index: 9999;
+    }
+    .login .title {
+      width: 100%;
+      height: 50px;
+      padding: 5px 0;
+      box-sizing: border-box;
+      line-height: 40px;
+      text-align: center;
+      font-size: 18px;
+      cursor: move;
+      user-select: none;
+    }
+    .title span {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border-radius: 50%;
+      line-height: 30px;
+      border: 1px solid #ebebeb;
+      text-align: center;
+      font-size: 6px;
+      cursor: pointer;
+    }
+    .login-input-content {
+      margin-top: 10px;
+    }
+    .login .uname {
+      height: 40px;
+      line-height: 40px;
+      padding-left: 15px;
+    }
+    .login .uname input {
+      margin-left: 10px;
+      height: 26px;
+      width: 350px;
+      text-indent: 10px;
+    }
+    .login .upwd {
+      margin-top: 20px;
+    }
+    .login .upwd input {
+      margin-left: 10px;
+      height: 26px;
+      width: 350px;
+      text-indent: 10px;
+    }
+    .login .loginBtn {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .login .loginBtn div {
+      height: 40px;
+      width: 240px;
+      margin: 0 auto;
+      line-height: 40px;
+      font-size: 16px;
+      color: #666;
+      border: 1px solid #ebebeb;
+      background: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-header">
+    <a href="javascript:void(0);" class="link">点击,弹出登录框</a>
+  </div>
+  <div class="login">
+    <div class="title">登录会员
+    <span>关闭</span>
+    </div>
+    <div class="login-input-content">
+      <div class="uname">
+        <label for="uname">用户名:</label>
+        <input type="text" id="uname" placeholder="请输入用户名" >
+      </div>
+      <div class="upwd">
+        <label for="upwd">登录密码:</label>
+        <input type="password" id="upwd" placeholder="请输入登录密码">
+      </div>
+    </div>
+    <div class="loginBtn">
+      <div>登录会员</div>
+    </div>
+  </div>
+
+  <script>
+    // 功能1: 点击link,显示login
+    // 功能2: 显示login的时候, 需要对其设置居中效果
+    // 功能3: 在title区域按下去， 可以拖拽登录框
+    
+    let link = document.querySelector('.link')
+    let loginBoard = document.querySelector('.login')
+    let closeBtn = document.querySelector('.title span')
+    let title = document.querySelector('.login .title')
+    
+    
+    link.addEventListener('click', function(e) {
+      e.preventDefault()
+    // 显示login板时，需要设置水平竖直居中样式
+      loginBoard.style.display = 'block'
+      // console.log(window.innerWidth, loginBoard.offsetWidth);
+      loginBoard.style.left = `${( window.innerWidth - loginBoard.offsetWidth ) / 2}px`
+      loginBoard.style.top = `${( window.innerHeight - title.offsetHeight - loginBoard.offsetHeight ) / 2}px`
+      
+    })
+    // 关闭按钮
+    closeBtn.addEventListener('click', function() {
+      loginBoard.style.display = 'none'
+    })
+    document.addEventListener('keyup', function(e) {
+      if(e.keyCode == 27 && loginBoard.style.display === 'block')
+      loginBoard.style.display = 'none'
+    })
+    //  在title区域按下去， 可以拖拽登录框
+    let open = false //mousemove 事件, 一开始不执行
+    let disX = 0
+    let disY = 0
+    title.addEventListener('mousedown', function(e) {
+      open = true
+      disX = e.pageX - loginBoard.offsetLeft
+      disY = e.pageY - loginBoard.offsetTop
+      console.log(e.pageX, loginBoard.offsetWidth );
+      console.log(e.pageY, loginBoard.offsetHeight );
+      
+      
+    })
+    document.addEventListener('mousemove', function(e) {
+      //清除选中的文字
+      // 老方法
+      // window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty()
+      // 新方法
+      // 
+      let currentX = e.pageX - disX
+      let currentY = e.pageY - disY
+      if(currentX <= 0) {
+        currentX = 0
+      }
+      if(currentY <= 21) {
+        currentY = 21
+      }
+      if(currentX >= window.innerWidth - loginBoard.offsetWidth - 21) {
+        currentX = window.innerWidth - loginBoard.offsetWidth -21
+      }
+      if(currentY >= window.innerHeight - loginBoard.offsetHeight) {
+        currentY = window.innerHeight - loginBoard.offsetHeight
+      }
+      if(open) {
+        loginBoard.style.left = `${ currentX }px`
+        loginBoard.style.top = `${ currentY }px`
+      }
+    })
+    document.addEventListener('mouseup', function() {
+      open = false
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-03-18 07:38:57
+ * @LastEditTime: 2020-03-18 09:08:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /undefined/Users/apple/Desktop/手风琴.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .accordion {
+      position: relative;
+      width: 1200px;
+      height: 400px;
+      margin: 100px auto;
+      border: 2px solid pink;
+      overflow: hidden;
+    }
+    .accordion li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1200px;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="accordion">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+
+  <script src="./webapi03code/缓动动画final.js"></script>
+  <script>
+    let box = document.querySelector('.accordion')
+    let lis = document.querySelectorAll('li')
+    let distance = box.offsetWidth / lis.length
+    // lis[0].style.backgroundImage = './images/1.jpg'
+
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].idx = i
+      lis[i].style.backgroundImage = `url(./images/${i + 1}.jpg)` 
+      lis[i].style.left = `${i * distance}px `   
+      // 鼠标移入时，需要对每个li元素进行移动
+      lis[i].addEventListener('mouseover', function() {
+        // 两类li
+        for (let i = 0; i < lis.length; i++) {
+          if(i <= this.idx) {
+            animate(lis[i], {'left': i * 100})
+          }else {
+            animate(lis[i], {'left': i * 100 + 700})
+          }
+        }
+      })
+    }
+    box.addEventListener('mouseout', function() {
+      for (let i = 0; i < lis.length; i++) {
+        animate(lis[i], {'left': i * 240})        
+      }   
+    })
+  </script>
+</body>
+</html>
